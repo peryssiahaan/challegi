@@ -22,5 +22,11 @@ func main() {
 	r.GET("/questions", cms.GetQuestions)
 	r.POST("/questions", cms.CreateQuestion)
 
+	r.GET("/answers", cms.GetAnswers)
+	r.POST("/answers", cms.CreateAnswer)
+
+	r.GET("/groups", cms.GetGroups)
+	r.POST("/groups", cms.CreateGroup)
+
 	r.Run(":8080")
 }

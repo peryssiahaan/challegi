@@ -1,14 +1,12 @@
 package database
 
-import "challegi/models"
-
-func CreateQuestion(question *models.Question) error {
+func CreateQuestion(question *Question) error {
 	result := db.Create(question)
 	return result.Error
 }
 
-func GetQuestions() ([]models.Question, error) {
-	var questions []models.Question
+func GetQuestions() ([]Question, error) {
+	var questions []Question
 	result := db.Find(&questions)
 	return questions, result.Error
 }

@@ -7,27 +7,27 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func CreateQuestion(ctx *gin.Context) {
-	var question database.Question
-	if err := ctx.BindJSON(&question); err != nil {
+func CreateAnswer(ctx *gin.Context) {
+	var answers database.Answer
+	if err := ctx.BindJSON(&answers); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	if err := database.CreateQuestion(&question); err != nil {
+	if err := database.CreateAnswer(&answers); err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
-	ctx.JSON(http.StatusCreated, question)
+	ctx.JSON(http.StatusCreated, answers)
 }
 
-func GetQuestions(ctx *gin.Context) {
-	questions, err := database.GetQuestions()
+func GetAnswers(ctx *gin.Context) {
+	answers, err := database.GetAnswers()
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
 
-	ctx.JSON(http.StatusOK, questions)
+	ctx.JSON(http.StatusOK, answers)
 }
